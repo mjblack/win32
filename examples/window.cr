@@ -27,6 +27,8 @@ end
 
 hInstance = LibWinAPI.GetModuleHandleW(nil)
 hPrevInstance = Pointer(Void).null
+icon = LibWinAPI.LoadIconW(pointerof(hInstance), pointerof(LibWinAPI::IDI_APPLICATION))
+cursor = LibWinAPI.LoadCursorW(pointerof(hInstance), pointerof(LibWinAPI::IDC_ARROW))
 
 funptr =->winproc(LibWinAPI::HWND, UInt32, LibWinAPI::WPARAM, LibWinAPI::LPARAM).pointer
 wc = LibWinAPI::WNDCLASSEXW.new
@@ -37,8 +39,8 @@ wc.lpszMenuName = WINDOW_TITLE
 wc.style = LibWinAPI::CS_HREDRAW | LibWinAPI::CS_VREDRAW
 wc.cbClsExtra = 0
 wc.cbWndExtra = 0
-wc.style = 0
 wc.hInstance = hInstance
+wc.hIcon = icon
 
 if LibWinAPI.RegisterClassExW(pointerof(wc)) == 0
   err = LibC.GetLastError
