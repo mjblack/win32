@@ -34,7 +34,7 @@ module Crystal
     if exception
       title = "Unhandled Exception".to_utf16
       message = exception.inspect_with_backtrace.to_utf16
-      LibWinAPI.MessageBoxW(nil, message, title, 0x10)
+      LibWin32.MessageBoxW(nil, message, title, 0x10)
     end
 
     status

@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-describe WinApi do
+describe Win32i do
   # TODO: Write tests
 
   it "works" do

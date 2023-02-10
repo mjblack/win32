@@ -1,9 +1,9 @@
-name: win_api
+name: win32
 version: 0.1.0
 
 authors:
   - Matthew J. Black <mjblack@gmail.com>
 
-crystal: 1.7.1
+crystal: 1.7.2
 
 license: MIT

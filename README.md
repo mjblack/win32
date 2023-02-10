@@ -1,6 +1,6 @@
-# win_api
+# win32
 
-Library for Windows API calls.
+Library for Win32 API.
 
 ## Installation
 
@@ -9,7 +9,7 @@ Library for Windows API calls.
    ```yaml
    dependencies:
      win_api:
-       github: mjblack/win_api
+       github: mjblack/win32
    ```
 
 2. Run `shards install`
@@ -17,7 +17,7 @@ Library for Windows API calls.
 ## Usage
 
 ```crystal
-require "win_api"
+require "win32"
 ```
 
 See examples to draw window
@@ -29,7 +29,7 @@ TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it (<https://github.com/your-github-user/win_api/fork>)
+1. Fork it (<https://github.com/your-github-user/win32/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

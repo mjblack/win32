@@ -1,11 +1,15 @@
 
 @[Link("user32")]
-lib LibWinAPI
+lib LibWin32
   GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT = 2
 
-  WM_DESTROY   =   2
-  WM_PAINT     = 0xF
-  WM_CREATE    = 0x0001
+  ID_FILE_EXIT =  9001_u32
+
+  WM_DESTROY   = 0x0002_u32
+  WM_PAINT     = 0xF_u32
+  WM_CREATE    = 0x0001_u32
+  WM_COMMAND   = 0x0111_u32
+  WM_CLOSE     = 0x0010_32
   COLOR_WINDOW =   5
 
   IDC_ARROW = 32512_u16
@@ -52,6 +56,51 @@ lib LibWinAPI
   WS_EX_TOPMOST = 0x00000008
   WS_EX_TRANSPARENT = 0x00000020
   WS_EX_WINDOWEDGE = 0x00000100
+
+  MF_BYCOMMAND = 0x00000000
+  MF_BYPOSITION = 0x00000400
+
+  MF_BITMAP = 0x00000004
+  MF_CHECKED = 0x00000008
+  MF_DISABLED = 0x00000002
+  MF_ENABLED = 0x00000000
+  MF_GRAYED = 0x00000001
+  MF_MENUBARBREAK = 0x00000020
+  MF_MENUBREAK = 0x00000040
+  MF_OWNERDRAW = 0x00000100
+  MF_POPUP = 0x00000010
+  MF_SEPARATOR = 0x00000800
+  MF_STRING = 0x00000000
+  MF_UNCHECKED = 0x00000000
+
+  MIIM_BITMAP = 0x00000080
+  MIIM_CHECKMARKS = 0x00000008
+  MIIM_DATA = 0x00000020
+  MIIM_FTYPE = 0x00000100
+  MIIM_ID = 0x00000002
+  MIIM_STATE = 0x00000001
+  MIIM_STRING = 0x00000040
+  MIIM_SUBMENU = 0x00000004
+  MIIM_TYPE = 0x00000010
+
+  MFT_BITMAP = 0x00000004
+  MFT_MENUBARBREAK = 0x00000020
+  MFT_MENUBREAK = 0x00000040
+  MFT_OWNERDRAW = 0x00000100
+  MFT_RADIOCHECK = 0x00000200
+  MFT_RIGHTJUSTIFY = 0x00004000
+  MFT_RIGHTORDER = 0x00002000
+  MFT_SEPARATOR = 0x00000800
+  MFT_STRING = 0x00000000
+
+  MFS_CHECKED = 0x00000008
+  MFS_DEFAULT = 0x00001000
+  MFS_DISABLED = 0x00000003
+  MFS_ENABLED = 0x00000000
+  MFS_GRAYED = 0x00000003
+  MFS_HILITE = 0x00000080
+  MFS_UNCHECKED = 0x00000000
+  MFS_UNHILITE = 0x00000000
 
 
   CW_USEDEFAULT = Int32::MIN
@@ -109,9 +158,22 @@ lib LibWinAPI
   alias NPWNDCLASSEX = WNDCLASSEXW*
   alias LPWNDCLASSEX = WNDCLASSEXW*
 
+  struct MENUITEMIMFOW
+    cbSize, fMask, fType, fState, wID, cch : UInt32
+    hSubMenu : HMENU
+    hbmpChecked : HBITMAP
+    hbmpUnchecked : HBITMAP
+    dwItemData : UInt16*
+    dwTypeData : LPWSTR
+    hbmpItem : HBITMAP
+  end
+
+  alias LPMENUITEMINFOW = MENUITEMIMFOW*
+  alias LPCMENUITEMINFO = MENUITEMIMFOW*
 
   fun CreateWindowExW(dwExStyle : DWORD, lpClassName : LPCWSTR, lpWindowName : LPCWSTR, dwStyle : DWORD, x : Int32, y : Int32, nWidth : Int32, nHeight : Int32, hWndParent : HWND, hMenu : HMENU, hInstance : HINSTANCE, lpParam : LPVOID) : HWND
-  fun DefWindowProcW(hWnd : HWND, msg : UInt32, wParam : WPARAM, lParam : LPARAM) : LRESULT
+  fun DestroyWindow(hwnd : HWND) : Bool
+  fun DefWindowProcW(hWnd : HWND, msg : UInt32, wParam : UInt32*, lParam : UInt16*) : LRESULT
   fun RegisterClassExW(unnamedParam1 : WNDCLASSEXW*) : ATOM
   fun UnregisterClassW(lpClassName : LPCWSTR, hInstance : HINSTANCE) : Bool
   fun MessageBoxW(hWnd : HWND, lpText : LPCWSTR, lpCaption : LPCWSTR, uType : UInt32) : Int32
@@ -119,13 +181,24 @@ lib LibWinAPI
   fun TranslateMessage(lpMsg : MSG*) : Int32
   fun DispatchMessageW(lpMsg : MSG*) : Void*
   fun ShowWindow(hWnd : HWND, nCmdShow : Int32) : Int32
+  fun UpdateWindow(hWnd : HWND)
   fun BeginPaint(hWnd : HWND, lpPaint : LPPAINTSTRUCT) : HDC
   fun FillRect(hDC : HDC, lprc : RECT*, hbr : HBRUSH) : Int32
   fun EndPaint(hWnd : HWND, lpPaint : PAINTSTRUCT*) : Bool
   fun PostQuitMessage(nExitCode : Int32) : Void
+  fun PostMessageW(hWnd : HWND, msg : UInt32, wParam : WPARAM, lParam : LPARAM) : Bool
   fun GetMessageW(lpMsg : LPMSG, hWnd : HWND, wMsgFilterMin : UInt32, wMsgFilterMax : UInt32) : Int32
   fun LoadIconW(hInstance : Void*, lpIconName : LPCWSTR) : HICON
   fun LoadCursorW(hInstance : Void*, lpCursorName : LPCWSTR) : HCURSOR
   fun MAKEINTRESOURCEW(Int32) : Void*
   fun GetStockObject(i : Int32) : HGDIOBJ
+  fun CreateMenu : HMENU
+  fun CreatePopupMenu : HMENU
+  fun AppendMenuW(hMenu : HMENU, uFlags : UInt32, uIDNewItem : UInt32*, lpNewItem : LPCWSTR) : Bool
+  fun GetMenu(hWnd : HWND) : HMENU
+  fun SetMenu(hWnd : HWND, hMenu : HMENU) : HMENU
+  fun DrawMenuBar(hWnd : HWND) : Bool
+  fun InsertMenuW(hMenu : HMENU, uPosition : UInt32, uFlags : UInt32, uIDNewItem : UInt32*, lpNewItem : LPCWSTR) : Bool
+  fun InsertMenuItemW(hMenu : HMENU, item : UInt32, fByPosition : Bool, lpmi : LPCMENUITEMINFO) : Bool
+
 end
