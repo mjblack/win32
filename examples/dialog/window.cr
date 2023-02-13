@@ -112,8 +112,6 @@ end
 
 
 
-icon = LibWin32.LoadIconW(pointerof(hInstance), pointerof(LibWin32::IDI_APPLICATION))
-cursor = LibWin32.LoadCursorW(pointerof(hInstance), pointerof(LibWin32::IDC_ARROW))
 
 funptr =->winproc(LibWin32::HWND, LibWin32::UINT, LibWin32::WPARAM, LibWin32::LPARAM).pointer
 wc = LibWin32::WNDCLASSEXW.new
@@ -124,7 +122,6 @@ wc.style = LibWin32::CS_HREDRAW | LibWin32::CS_VREDRAW
 wc.cbClsExtra = 0
 wc.cbWndExtra = 0
 wc.hInstance = AppData.hInstance.unsafe_as(LibWin32::HINSTANCE)
-wc.hIcon = icon
 
 if LibWin32.RegisterClassExW(pointerof(wc)) == 0
   err = LibC.GetLastError
