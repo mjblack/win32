@@ -1,0 +1,21 @@
+Build Instructions
+
+## Resource Compiling
+Prior to running crystal build the resource.rc needs to be compiled.
+This can be done by running the following command with the x64
+Native Tools Command Prompt for VS (command prompt with loaded vcvars).
+
+```
+rc resource.rc
+```
+
+If successful then there will be a new file named `resource.res` in the
+directory.
+
+## Crystal Compiling
+When compiling you will need to pass in linker options to link the
+compiled resource object.
+
+```
+crystal build window.cr --link-flags "/LIBPATH:<path to resource file> resource.res"
+```
