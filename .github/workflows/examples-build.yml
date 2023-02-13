@@ -17,7 +17,7 @@ jobs:
 
     steps:
     - name: Scoop Installer
-      uses: MinoruSekine/setup-scoop@v1
+      uses: MinoruSekine/setup-scoop@main
     - name: Scoop Bucket Add
       run: scoop bucket add crystal-preview https://github.com/neatorobito/scoop-crystal
     - name: Scoop Crystal Install
