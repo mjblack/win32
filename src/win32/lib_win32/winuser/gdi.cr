@@ -178,8 +178,18 @@ lib LibWin32
   PM_REMOVE   = 0x0001
   PM_NOYIELD  = 0x0002
 
-  IDOK     = 1
-  IDCANCEL = 2
+  IDOK       = 1
+  IDCANCEL   = 2
+  IDABORT    = 3
+  IDRETRY    = 4
+  IDIGNORE   = 5
+  IDYES      = 6
+  IDNO       = 7
+  IDCLOSE    = 8
+  IDHELP     = 9
+  IDTRYAGAIN = 10
+  IDCONTINUE = 11
+  IDTIMEOUT  = 12
 
   SWP_NOSIZE         = 0x0001
   SWP_NOMOVE         = 0x0002
