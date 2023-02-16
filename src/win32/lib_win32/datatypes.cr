@@ -1,7 +1,7 @@
 lib LibWin32
 
-  TRUE  = 1_i64
-  FALSE = 0_i64
+  TRUE  = 1
+  FALSE = 0
 
   type ATOM      = LibC::WORD
   type PVOID     = Void*
@@ -23,7 +23,7 @@ lib LibWin32
   alias BOOL   = Int32
   alias CHAR   = LibC::CHAR
   alias WCHAR  = LibC::WCHAR
-  alias LONG   = LibC::LONG
+  alias LONG   = LibC::LONG   # Int32
   alias UINT   = UInt32
   alias ULONG  = UINT
   alias SHORT  = Int16
