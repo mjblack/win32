@@ -27,3 +27,4 @@ jobs:
       run: shards install
     - run: crystal build -o simple_window.exe examples\simple_window\window.cr
     - run: powershell.exe examples\dialog\Build.ps1
+    - run: crystal build -o textbox.exe examples\textbox\window.cr
