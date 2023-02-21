@@ -60,13 +60,81 @@ lib LibWin32
   SW_SHOWDEFAULT     = 10
   SW_FORCEMINIMIZE   = 11
 
-  WM_DESTROY    = 0x0002_u32
-  WM_PAINT      = 0xF_u32
-  WM_CREATE     = 0x0001_u32
+  # Window Notification
+
+  WM_ACTIVATEAPP            = 0x001C_u32
+  WM_CANCELMODE             = 0x001F_u32
+  WM_CHILDACTIVATE          = 0x0022_u32
+  WM_CLOSE                  = 0x0010_u32
+  WM_COMPACTING             = 0x0041_u32
+  WM_CREATE                 = 0x0001_u32
+  WM_DESTROY                = 0x0002_u32
+  WM_ENABLE                 = 0x000A_u32
+  WM_ENTERSIZEMOVE          = 0x0231_u32
+  WM_EXITSIZEMOVE           = 0x0232_u32
+  WM_GETICON                = 0x007F_u32
+  WM_GETMINMAXINFO          = 0x0024_u32
+  WM_INPUTLANGCHANGE        = 0x0051_u32
+  WM_INPUTLANGCHANGEREQUEST = 0x0050_u32
+  WM_MOVE                   = 0x0003_u32
+  WM_MOVING                 = 0x0216_u32
+  WM_NCACTIVATE             = 0x0086_u32
+  WM_NCCALCSIZE             = 0x0083_u32
+  WM_NCCREATE               = 0x0081_u32
+  WM_NCDESTROY              = 0x0082_u32
+  WM_NULL                   = 0x0000_u32
+  WM_QUERYDRAGICON          = 0x0037_u32
+  WM_QUERYOPEN              = 0x0013_u32
+  WM_QUIT                   = 0x0012_u32
+  WM_SHOWWINDOW             = 0x0018_u32
+  WM_SIZE                   = 0x0005_u32
+  WM_SIZING                 = 0x0214_u32
+  WM_STYLECHANGED           = 0x007D_u32
+  WM_STYLECHANGING          = 0x007C_u32
+  WM_THEMECHANGED           = 0x031A_u32
+  WM_USERCHANGED            = 0x0054_u32  # Might not be needed
+  WM_WINDOWPOSCHANGED       = 0x0047_u32
+  WM_WINDOWPOSCHANGING      = 0x0046_u32
+
+  WM_ERASEBKGND      = 0x0014_u32
+  WM_GETFONT         = 0x0031_u32
+  WM_GETTEXT         = 0x000D_u32
+  WM_GETTEXTLENGTH   = 0x000E_u32
+  WM_SETFONT         = 0x0030_u32
+  WM_SETICON         = 0x0080_u32
+  WM_SETTEXT         = 0x000C_u32
+
+  # Painting and Drawing
+
+  WM_DISPLAYCHANGE   = 0x007E_u32
+  WM_NCPAINT         = 0x0085_u32
+  WM_PAINT           = 0x000F_u32
+  WM_PRINT           = 0x0317_u32
+  WM_PRINTCLIENT     = 0x0318_u32
+  WM_SETREDRAW       = 0x000B_u32
+  WM_SYNCPAINT       = 0x0088_u32
+
+  # Menus
   WM_COMMAND    = 0x0111_u32
-  WM_CLOSE      = 0x0010_32
+
+  # Dialog Boxes
   WM_INITDIALOG = 0x0110_u32
 
+  # Keyboard Input Notifications
+
+  WM_ACTIVATE         = 0x0006
+  WM_APPCOMMAND       = 0x0319
+  WM_CHAR             = 0x0102
+  WM_DEADCHAR         = 0x0103
+  WM_HOTKEY           = 0x0312
+  WM_KEYDOWN          = 0x0100
+  WM_KEYUP            = 0x0101
+  WM_KEYFOCUS         = 0x0008
+  WM_SETFOCUS         = 0x0007_u32
+  WM_SYSDEADCHAR      = 0x0107
+  WM_SYSKEYDOWN       = 0x0104
+  WM_SYSKEYUP         = 0x0105
+  WM_UNICHAR          = 0x0109
   WHITE_BRUSH = 0x80000000
 
   CS_HREDRAW = 1
@@ -128,6 +196,22 @@ lib LibWin32
   WS_EX_TOPMOST             = 0x00000008
   WS_EX_TRANSPARENT         = 0x00000020
   WS_EX_WINDOWEDGE          = 0x00000100
+
+  # Edit Control Styles
+  ES_LEFT             = 0x0000
+  ES_CENTER           = 0x0001
+  ES_RIGHT            = 0x0002
+  ES_MULTILINE        = 0x0004
+  ES_UPPERCASE        = 0x0008
+  ES_LOWERCASE        = 0x0010
+  ES_PASSWORD         = 0x0020
+  ES_AUTOVSCROLL      = 0x0040
+  ES_AUTOHSCROLL      = 0x0080
+  ES_NOHIDESEL        = 0x0100
+  ES_OEMCONVERT       = 0x0400
+  ES_READONLY         = 0x0800
+  ES_WANTRETURN       = 0x1000
+  ES_NUMBER           = 0x2000
 
   MF_BYCOMMAND  = 0x00000000
   MF_BYPOSITION = 0x00000400
@@ -243,6 +327,49 @@ lib LibWin32
   BST_INDETERMINATE = 0x0002
   BST_PUSHED        = 0x0004
   BST_FOCUS         = 0x0008
+
+  # Edit Control Messages
+
+  EM_GETSEL               = 0x00B0
+  EM_SETSEL               = 0x00B1
+  EM_GETRECT              = 0x00B2
+  EM_SETRECT              = 0x00B3
+  EM_SETRECTNP            = 0x00B4
+  EM_SCROLL               = 0x00B5
+  EM_LINESCROLL           = 0x00B6
+  EM_SCROLLCARET          = 0x00B7
+  EM_GETMODIFY            = 0x00B8
+  EM_SETMODIFY            = 0x00B9
+  EM_GETLINECOUNT         = 0x00BA
+  EM_LINEINDEX            = 0x00BB
+  EM_SETHANDLE            = 0x00BC
+  EM_GETHANDLE            = 0x00BD
+  EM_GETTHUMB             = 0x00BE
+  EM_LINELENGTH           = 0x00C1
+  EM_REPLACESEL           = 0x00C2
+  EM_GETLINE              = 0x00C4
+  EM_LIMITTEXT            = 0x00C5
+  EM_CANUNDO              = 0x00C6
+  EM_UNDO                 = 0x00C7
+  EM_FMTLINES             = 0x00C8
+  EM_LINEFROMCHAR         = 0x00C9
+  EM_SETTABSTOPS          = 0x00CB
+  EM_SETPASSWORDCHAR      = 0x00CC
+  EM_EMPTYUNDOBUFFER      = 0x00CD
+  EM_GETFIRSTVISIBLELINE  = 0x00CE
+  EM_SETREADONLY          = 0x00CF
+  EM_SETWORDBREAKPROC     = 0x00D0
+  EM_GETWORDBREAKPROC     = 0x00D1
+  EM_GETPASSWORDCHAR      = 0x00D2
+  EM_SETMARGINS           = 0x00D3
+  EM_GETMARGINS           = 0x00D4
+  EM_SETLIMITTEXT         = EM_LIMITTEXT
+  EM_GETLIMITTEXT         = 0x00D5
+  EM_POSFROMCHAR          = 0x00D6
+  EM_CHARFROMPOS          = 0x00D7
+  EM_SETIMESTATUS         = 0x00D8
+  EM_GETIMESTATUS         = 0x00D9
+  EM_ENABLEFEATURE        = 0x00DA
 
   CW_USEDEFAULT = Int32::MIN
 
@@ -366,7 +493,13 @@ lib LibWin32
   fun SetFocus(hWnd : HWND) : HWND
   fun CreateWindowExW(dwExStyle : DWORD, lpClassName : LPCWSTR, lpWindowName : LPCWSTR, dwStyle : DWORD, x : Int32, y : Int32, nWidth : Int32, nHeight : Int32, hWndParent : HWND, hMenu : HMENU, hInstance : HINSTANCE, lpParam : LPVOID) : HWND
   fun DestroyWindow(hwnd : HWND) : Bool
+  fun EnableWindow(hWnd : HWND, bEnable : BOOL) : BOOL
+  fun GetWindowText(hWnd : HWND, lpString : LPCWSTR, nMaxCount : Int32) : Int32
+  fun GetWindowTextLengthW(hWnd : HWND) : Int32
+  fun MoveWindow(hWnd : HWND, x : Int32, y : Int32, nWidth : Int32, nHeight : Int32, bRepaint : BOOL) : BOOL
+  fun SetWindowTextW(hWnd : HWND, lpString : LPCWSTR) : BOOL
   fun SetWindowPos(hWnd : HWND, hWndInsertAfter : HWND, x : Int32, y : Int32, cx : Int32, cy : Int32, uFlags : UINT) : BOOL
+  fun SendMessageW(hWnd : HWND, msg : UINT, wParam : WPARAM, lParam : LPARAM) : LRESULT
   fun GetParent(hWnd : HWND) : HWND
   fun CopyRect(lprcDst : LPRECT, lprcSrc : LPRECT) : BOOL
   fun GetWindowRect(hWnd : HWND, lpRect : LPRECT) : BOOL
@@ -410,4 +543,6 @@ lib LibWin32
   fun CheckDlgButton(hwnd : HWND, nIDButton : Int32, uCheck : UINT) : BOOL
   fun GetDlgCtrlID(hWnd : HWND) : Int32
   fun GetDlgItem(hDlg : HWND, nIDDlgItem : Int32) : HWND
+
+
 end

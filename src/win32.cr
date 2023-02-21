@@ -16,6 +16,11 @@ module Win32
     val
   end
 
+  def loword(i : Int64) : UInt16
+    val = (i.to_u64 & 0xffff).to_u16
+    val
+  end
+
   # Covers for this C macro
   # #define HIWORD(l)           ((WORD)((((DWORD_PTR)(l)) >> 16) & 0xffff))
   def hiword(i : UInt32*) : UInt16
@@ -23,4 +28,8 @@ module Win32
     val
   end
 
+  def hiword(i : Int64*) : UInt16
+    val = ((i.value.to_u64 >> 16) & 0xFFFF).to_u16
+    val
+  end
 end
